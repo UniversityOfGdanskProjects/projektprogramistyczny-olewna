@@ -15,7 +15,7 @@ export default function commentReducer(state = [], action) {
         ...state.map((comment) => {
           if (comment.id === action.payload.id) {
             comment.name = action.payload.name;
-          return comment
+            return comment;
           } else return comment;
         }),
       ];

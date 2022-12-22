@@ -34,7 +34,7 @@ export default function Comment(props) {
           onChange={handleChange}
           value={updateValue}
         />
-        {updateValue.length >0 ? (
+        {updateValue.length > 0 ? (
           <button onClick={handleClick}>Update comment</button>
         ) : null}
       </div>

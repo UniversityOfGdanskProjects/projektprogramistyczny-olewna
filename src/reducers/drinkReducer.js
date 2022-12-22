@@ -8,7 +8,7 @@ import {
 export default function drinkReducer(state = [], action) {
   switch (action.type) {
     case CREATE_DRINKS:
-      return state.concat(action.payload);
+      return (state = action.payload);
     case ADD_DRINK:
       return [...state, action.payload];
     case DELETE_DRINK:
