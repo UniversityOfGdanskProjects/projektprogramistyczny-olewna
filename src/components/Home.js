@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CommentForm from './CommentForm.js';
+import CommentList from './CommentList.js';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addDrinkAction } from '../actions/drinkActions.js';
 
 export function Home() {
   return (
@@ -9,34 +13,12 @@ export function Home() {
       <button>
         <Link to="/list">LIST OF COCKTAILS</Link>
       </button>
-    </div>
-  );
-}
-
-export function CoctailList() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a')
-      .then((res) => res.data.drinks)
-      .then((res) => setData(res));
-  }, []);
-
-  // do reduxa
-
-  const drinkList = data.map((x) => (
-    <div className="drink" key={x.idDrink}>
-      <img src={x.strDrinkThumb} className="drink-img" />
-      <div className="drink-info">
-        <h2>{x.strDrink}</h2>
-        <h3>{x.strAlcoholic}</h3>
-        <button>
-          <Link to="/list/:id">Details</Link>
-        </button>
+      <div>
+        <CommentForm />
+        <CommentList />
       </div>
     </div>
-  ));
-  return <div>{drinkList}</div>;
+  );
 }
 
 export function CocktailDetails() {}

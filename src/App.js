@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import { Routes, Route, useLocation, Link } from 'react-router-dom';
-import { Home, CoctailList } from './components/Home.js';
+import { CocktailList } from './components/CocktailList.js';
+import { Home } from './components/Home.js';
 
 export default function App() {
   let location = useLocation();
@@ -14,8 +15,8 @@ export default function App() {
       ) : null}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="list" element={<CoctailList />} />
-        <Route path="list/:id" element={<CoctailList />} />
+        <Route path="list" element={<CocktailList />} />
+        {/* <Route path="list/:id" element={<CocktailList />} /> */}
       </Routes>
     </div>
   );
