@@ -26,7 +26,7 @@ export default function App() {
   return (
     <div>
       <Navbar />
-      {location.pathname !== '/list' ? (
+      {location.pathname !== '/' ? (
         <div className="link-home">
           <button className="link-home">
             <Link to="/">Home</Link>
@@ -34,12 +34,10 @@ export default function App() {
         </div>
       ) : null}
       <Routes>
-        <Route path="/" element={<Navigate to="list" />} />
-        <Route
-          path="list"
+        <Route path="/"
           element={<CocktailList setSearched={setSearched} />}
         />
-        <Route path="list/:id" element={<CocktailDetails />} />
+        <Route path=":id" element={<CocktailDetails />} />
         <Route path="admin" element={<Admin />} />
         <Route path="*" element={<Error />} />
       </Routes>

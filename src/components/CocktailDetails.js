@@ -9,11 +9,14 @@ export function CocktailDetails() {
     (x) => x.idDrink === id
   )[0];
 
-  console.log(drink);
-
   return drink !== undefined ? (
     <div className="details">
       <h3>name: {drink.strDrink}</h3>
+      {drink.rating.length <= 0 ? (
+        <h3>No rates yet (be first!)</h3>
+      ) : (
+        <h3>rates: {drink.rating.toString()}</h3>
+      )}
       <h3>id: {drink.idDrink}</h3>
       <h3>glass: {drink.strGlass}</h3>
       <h3>image_url: {drink.strDrinkThumb}</h3>

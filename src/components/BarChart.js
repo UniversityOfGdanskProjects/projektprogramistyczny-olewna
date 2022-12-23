@@ -34,6 +34,8 @@ export default function BarChart({ drinks }) {
               label: 'Types of drinks',
               backgroundColor: '#f87979',
               data: dataArray,
+              // borderWidth: 1
+              borderRadius: 5,
             },
           ],
         }}

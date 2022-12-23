@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm.js';
 import CommentList from './CommentList.js';
 import BarChart from './BarChart.js';
+import { Stars } from './Stars.js';
 
 export function CocktailList({ setSearched }) {
   const drinksList = useSelector((state) => state.drinks);
@@ -14,10 +15,12 @@ export function CocktailList({ setSearched }) {
         <div className="drink" key={x.idDrink}>
           <img src={x.strDrinkThumb} className="drink-img" />
           <div className="drink-info">
-            <h2>{x.strDrink}</h2>
-            <h3>{x.strAlcoholic}</h3>
+            <div className="drink-name">{x.strDrink}</div>
+            <div className="drink-name">{x.strAlcoholic}</div>
+            <Stars rating={x.rating} />
+
             <button>
-              <Link to={`/list/${x.idDrink}`}>Details</Link>
+              <Link to={`${x.idDrink}`}>Details</Link>
             </button>
           </div>
         </div>
