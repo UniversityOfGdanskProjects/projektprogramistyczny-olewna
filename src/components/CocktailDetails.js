@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Error from './Error.js';
 
 export function CocktailDetails() {
   const { id } = useParams();
@@ -8,8 +9,10 @@ export function CocktailDetails() {
     (x) => x.idDrink === id
   )[0];
 
-  return (
-    <div>
+  console.log(drink);
+
+  return drink !== undefined ? (
+    <div className="details">
       <h3>name: {drink.strDrink}</h3>
       <h3>id: {drink.idDrink}</h3>
       <h3>glass: {drink.strGlass}</h3>
@@ -124,12 +127,8 @@ export function CocktailDetails() {
           </div>
         ) : null}
       </h3>
-
-      <div>
-        <button>
-          <Link to="/list">Back</Link>
-        </button>
-      </div>
     </div>
+  ) : (
+    <Error />
   );
 }

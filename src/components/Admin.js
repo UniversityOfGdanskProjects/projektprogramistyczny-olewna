@@ -9,5 +9,3 @@ export function Admin() {
     </div>
   );
 }
-
-// sprawdzic jak to sie robi

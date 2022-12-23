@@ -7,6 +7,7 @@ import { Admin } from './components/Admin.js';
 import { useDispatch } from 'react-redux';
 import { createDrinksAction } from './actions/drinkActions.js';
 import Navbar from './components/Navbar.js';
+import Error from './components/Error.js';
 import axios from 'axios';
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
         />
         <Route path="list/:id" element={<CocktailDetails />} />
         <Route path="admin" element={<Admin />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

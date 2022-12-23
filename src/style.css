@@ -85,3 +85,34 @@ button {
   margin: 15px;
   width: 300px;
 }
+
+.bar-chart {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.navbar {
+  background-color: #f87979;
+  color: black;
+  letter-spacing: 2px;
+  font-size: 28px;
+}
+
+.link-home {
+  margin: 13px;
+  font-size: 30px;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.error-msg {
+  display: flex;
+  justify-content: center;
+  font-size: 90px;
+}

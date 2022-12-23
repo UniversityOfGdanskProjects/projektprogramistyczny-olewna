@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm.js';
 import CommentList from './CommentList.js';
+import BarChart from './BarChart.js';
 
 export function CocktailList({ setSearched }) {
   const drinksList = useSelector((state) => state.drinks);
@@ -38,6 +39,11 @@ export function CocktailList({ setSearched }) {
 
   return (
     <div>
+      {drinksList !== null ? (
+        <div className="chart">
+          <BarChart drinks={drinksList} />
+        </div>
+      ) : null}
       <div className="search-input">
         <input
           name="search"
@@ -48,10 +54,12 @@ export function CocktailList({ setSearched }) {
         />
       </div>
       <div className="drink-list">{drinkList}</div>
-      <div className="comment-users">
-        <CommentForm />
-        <CommentList />
-      </div>
+      {drinksList !== null ? (
+        <div className="comment-users">
+          <CommentForm />
+          <CommentList />
+        </div>
+      ) : null}
     </div>
   );
 }
