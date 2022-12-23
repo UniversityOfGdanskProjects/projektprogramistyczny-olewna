@@ -1,34 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
-import { Routes, Route, useLocation, Link } from 'react-router-dom';
+import { Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 import { CocktailList } from './components/CocktailList.js';
-import { Home } from './components/Home.js';
 import { CocktailDetails } from './components/CocktailDetails.js';
+import { Admin } from './components/Admin.js';
 import { useDispatch } from 'react-redux';
 import { createDrinksAction } from './actions/drinkActions.js';
+import Navbar from './components/Navbar.js';
 import axios from 'axios';
 
 export default function App() {
   let location = useLocation();
   const dispatch = useDispatch();
+  const [searched, setSearched] = useState('');
 
   useEffect(() => {
     axios
-      .get('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a')
+      .get(
+        `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searched}`
+      )
       .then((res) => dispatch(createDrinksAction(res.data.drinks)));
-  }, []);
+  }, [searched]);
 
   return (
     <div>
-      {location.pathname !== '/' ? (
-        <button className="link-home">
-          <Link to="/">Home</Link>
-        </button>
+      <Navbar />
+      {location.pathname !== '/list' ? (
+        <div className="link-home">
+          <button className="link-home">
+            <Link to="/">Home</Link>
+          </button>
+        </div>
       ) : null}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="list" element={<CocktailList />} />
+        <Route path="/" element={<Navigate to="list" />} />
+        <Route
+          path="list"
+          element={<CocktailList setSearched={setSearched} />}
+        />
         <Route path="list/:id" element={<CocktailDetails />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
     </div>
   );

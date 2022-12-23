@@ -20,91 +20,106 @@ export function CocktailDetails() {
         ingredients: <br />
         {drink.strIngredient1 !== null ? (
           <div>
-            -{drink.strIngredient1}
+            -{drink.strMeasure1}
+            {drink.strIngredient1}
             <br />
           </div>
         ) : null}
         {drink.strIngredient2 !== null ? (
           <div>
-            -{drink.strIngredient2}
+            -{drink.strMeasure2}
+            {drink.strIngredient2}
             <br />
           </div>
         ) : null}
         {drink.strIngredient3 !== null ? (
           <div>
-            -{drink.strIngredient3}
+            -{drink.strMeasure3}
+            {drink.strIngredient3}
             <br />
           </div>
         ) : null}
         {drink.strIngredient4 !== null ? (
           <div>
-            -{drink.strIngredient4}
+            -{drink.strMeasure4}
+            {drink.strIngredient4}
             <br />
           </div>
         ) : null}
         {drink.strIngredient5 !== null ? (
           <div>
-            -{drink.strIngredient5}
+            -{drink.strMeasure5}
+            {drink.strIngredient5}
             <br />
           </div>
         ) : null}
         {drink.strIngredient6 !== null ? (
           <div>
-            -{drink.strIngredient6}
+            -{drink.strMeasure6}
+            {drink.strIngredient6}
             <br />
           </div>
         ) : null}
         {drink.strIngredient7 !== null ? (
           <div>
-            -{drink.strIngredient7}
+            -{drink.strMeasure7}
+            {drink.strIngredient7}
             <br />
           </div>
         ) : null}
         {drink.strIngredient8 !== null ? (
           <div>
-            -{drink.strIngredient8}
+            -{drink.strMeasure8}
+            {drink.strIngredient8}
             <br />
           </div>
         ) : null}
         {drink.strIngredient9 !== null ? (
           <div>
-            -{drink.strIngredient9}
+            -{drink.strMeasure9}
+            {drink.strIngredient9}
             <br />
           </div>
         ) : null}
         {drink.strIngredient10 !== null ? (
           <div>
-            -{drink.strIngredient10}
+            -{drink.strMeasure10}
+            {drink.strIngredient10}
             <br />
           </div>
         ) : null}
         {drink.strIngredient11 !== null ? (
           <div>
-            -{drink.strIngredient11}
+            -{drink.strMeasure11}
+            {drink.strIngredient11}
             <br />
           </div>
         ) : null}
         {drink.strIngredient12 !== null ? (
           <div>
-            -{drink.strIngredient12}
+            -{drink.strMeasure12}
+            {drink.strIngredient12}
             <br />
           </div>
         ) : null}
         {drink.strIngredient13 !== null ? (
           <div>
-            -{drink.strIngredient13}
+            -{drink.strMeasure13}
+            {drink.strIngredient13}
             <br />
           </div>
         ) : null}
         {drink.strIngredient14 !== null ? (
           <div>
-            -{drink.strIngredient14}
+            -{drink.strMeasure14}
+            {drink.strIngredient14}
             <br />
           </div>
         ) : null}
         {drink.strIngredient15 !== null ? (
           <div>
-            -{drink.strIngredient15}
+            -{drink.strMeasure15}
+            {drink.strIngredient15}
             <br />
           </div>
         ) : null}

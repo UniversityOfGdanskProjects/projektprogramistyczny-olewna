@@ -26,25 +26,29 @@ export default function CommentForm() {
   });
 
   return (
-    <div className="form">
+    <div className="form-comments">
       <form onSubmit={formik.handleSubmit}>
-        <div className="comment">
-          <input
-            name="user"
-            placeholder="WRITE YOUR NAME"
-            value={formik.values.user}
-            required
-            onChange={formik.handleChange}
-          />
-          <input
-            name="name"
-            placeholder="WRITE COMMENT"
-            value={formik.values.name}
-            required
-            onChange={formik.handleChange}
-          />
+        <div className="comments">
+          <div className="comment">
+            <input
+              name="user"
+              placeholder="WRITE YOUR NAME"
+              value={formik.values.user}
+              required
+              onChange={formik.handleChange}
+            />
+            <input
+              name="name"
+              placeholder="WRITE COMMENT"
+              value={formik.values.name}
+              required
+              onChange={formik.handleChange}
+            />
+          </div>
+          <button className="button-submit" type="submit">
+            ADD COMMENT
+          </button>
         </div>
-        <button type="submit">ADD COMMENT</button>
       </form>
     </div>
   );

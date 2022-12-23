@@ -23,10 +23,12 @@ export default function Comment(props) {
   }
 
   return (
-    <div>
-      <h2>{props.comment.user}</h2>
-      <h3>{props.comment.name}</h3>
-      <div>
+    <div className="full-comment">
+      <div className="coms">
+        <h2>{props.comment.user}</h2>
+        <h2>{props.comment.name}</h2>
+      </div>
+      {/* <div>
         <input
           name="name"
           type="text"
@@ -37,7 +39,7 @@ export default function Comment(props) {
         {updateValue.length > 0 ? (
           <button onClick={handleClick}>Update comment</button>
         ) : null}
-      </div>
+      </div> */}
       <button onClick={props.deleted}>Delete</button>
     </div>
   );

@@ -13,6 +13,7 @@ p {
 .drink {
   display: flex;
   margin: 12px;
+  width: 300px;
 }
 
 .drink-info {
@@ -37,4 +38,50 @@ button {
   margin: 5px;
   padding: 5px 15px;
   font-size: 15px;
+}
+
+.list,
+.navbar,
+.full-comment,
+.link-home,
+.search-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.drink-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comments,
+.list-button {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment > * {
+  margin: 3px;
+}
+
+.coms {
+  display: flex;
+}
+
+.coms > * {
+  margin: 10px;
+}
+
+.search-input > * {
+  margin: 15px;
+  width: 300px;
 }
