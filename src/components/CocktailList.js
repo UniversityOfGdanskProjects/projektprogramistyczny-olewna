@@ -15,8 +15,8 @@ export function CocktailList({ setSearched }) {
         <div className="drink" key={x.idDrink}>
           <img src={x.strDrinkThumb} className="drink-img" />
           <div className="drink-info">
-            <div className="drink-name">{x.strDrink}</div>
-            <div className="drink-name">{x.strAlcoholic}</div>
+            <div>{x.strDrink}</div>
+            <div>{x.strAlcoholic}</div>
             <Stars rating={x.rating} />
 
             <button>

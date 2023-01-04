@@ -3,7 +3,7 @@ import './style.css';
 import { Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 import { CocktailList } from './components/CocktailList.js';
 import { CocktailDetails } from './components/CocktailDetails.js';
-import { Admin } from './components/Admin.js';
+import { Login } from './components/Login.js';
 import { useDispatch } from 'react-redux';
 import { createDrinksAction } from './actions/drinkActions.js';
 import Navbar from './components/Navbar.js';
@@ -34,11 +34,9 @@ export default function App() {
         </div>
       ) : null}
       <Routes>
-        <Route path="/"
-          element={<CocktailList setSearched={setSearched} />}
-        />
+        <Route path="/" element={<CocktailList setSearched={setSearched} />} />
         <Route path=":id" element={<CocktailDetails />} />
-        <Route path="admin" element={<Admin />} />
+        <Route path="login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

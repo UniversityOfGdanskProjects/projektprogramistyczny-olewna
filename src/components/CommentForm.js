@@ -3,13 +3,20 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addCommentAction } from '../actions/commentActions.js';
+import { useCocktail } from '../context/CocktailsProvider.js';
 
 export default function CommentForm() {
+  const { logged } = useCocktail();
   const dispatch = useDispatch();
+
+  const nicknaming = (nick) => {
+    if (nick === '') return 'Guest';
+    else return nick;
+  };
 
   const formik = useFormik({
     initialValues: {
-      user: 'Guest',
+      user: nicknaming(logged.nickname),
       name: '',
       id: uuidv4(),
     },
@@ -17,7 +24,7 @@ export default function CommentForm() {
       dispatch(addCommentAction(values));
       formik.resetForm({
         values: {
-          user: 'Guest',
+          user: nicknaming(logged.nickname),
           name: '',
           id: uuidv4(),
         },
@@ -30,13 +37,17 @@ export default function CommentForm() {
       <form onSubmit={formik.handleSubmit}>
         <div className="comments">
           <div className="comment">
-            <input
-              name="user"
-              placeholder="WRITE YOUR NAME"
-              value={formik.values.user}
-              required
-              onChange={formik.handleChange}
-            />
+            {logged.type === '' ? (
+              <input
+                name="user"
+                placeholder="WRITE YOUR NAME"
+                value={formik.values.user}
+                required
+                onChange={formik.handleChange}
+              />
+            ) : (
+              <div>{logged.nickname}</div>
+            )}
             <input
               name="name"
               placeholder="WRITE COMMENT"

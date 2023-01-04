@@ -41,7 +41,6 @@ button {
 }
 
 .list,
-.navbar,
 .full-comment,
 .link-home,
 .search-input {
@@ -97,6 +96,16 @@ button {
   color: black;
   letter-spacing: 2px;
   font-size: 28px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 36px;
+  text-align: center;
+  margin-left: 25%;
 }
 
 .link-home {
@@ -115,12 +124,6 @@ button {
   display: flex;
   justify-content: center;
   font-size: 90px;
-}
-
-.drink-name {
-  font-size: 20px;
-  margin: 3px;
-  font-weight: bold;
 }
 
 .stars {
