@@ -89,6 +89,7 @@ button {
   display: flex;
   justify-content: center;
   text-align: center;
+  margin: 50px;
 }
 
 .navbar {
@@ -133,4 +134,22 @@ button {
 
 .stars > * {
   cursor: pointer;
+}
+
+.home{
+  display: flex;
+}
+
+.left-side{
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.list{
+  background-color: white;
+}
+
+input{
+  padding: 10px;
 }

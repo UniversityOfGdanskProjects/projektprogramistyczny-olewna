@@ -41,28 +41,32 @@ export function CocktailList({ setSearched }) {
   }, [search]);
 
   return (
-    <div>
-      {drinksList !== null ? (
-        <div className="chart">
-          <BarChart drinks={drinksList} />
+    <div className='home'>
+      <div className='left-side'>
+        <div className="search-input">
+          <input
+            name="search"
+            type="text"
+            placeholder="Search cocktails..."
+            value={search}
+            onChange={handleChange}
+            />
         </div>
-      ) : null}
-      <div className="search-input">
-        <input
-          name="search"
-          type="text"
-          placeholder="Search cocktails..."
-          value={search}
-          onChange={handleChange}
-        />
+        {drinksList !== null ? (
+          <div className="chart">
+            <BarChart drinks={drinksList} />
+          </div>
+        ) : null}
+          {drinksList !== null ? (
+            <div className="comment-users">
+              <CommentForm />
+              <CommentList />
+            </div>
+          ) : null}
       </div>
-      <div className="drink-list">{drinkList}</div>
-      {drinksList !== null ? (
-        <div className="comment-users">
-          <CommentForm />
-          <CommentList />
-        </div>
-      ) : null}
+              <div>
+        <div className="drink-list">{drinkList}</div>
+      </div>
     </div>
   );
 }
