@@ -1,30 +1,27 @@
 const express = require('express')
+const {
+    createCocktail,
+    getCocktails,
+    getOneCocktail,
+    deleteCocktail,
+    updateCocktail,
+} = require('../controllers/cocktailController.js')
 
 const router = express.Router()
 
 //GET all cocks
-router.get('/', (req,res) => {
-    res.json({msg: 'GET all cocktails'})
-})
+router.get('/', getCocktails)
 
 //GET one cock
-router.get('/:id',(req,res) => {
-    res.json({msg: "GET one cocktail"})
-})
+router.get('/:id', getOneCocktail)
 
 // POST new cock
-router.post('/',(req,res) => {
-    res.json({msg: "POST new cocktail"})
-})
+router.post('/', createCocktail)
 
 // DELETE cock
-router.delete('/:id',(req,res) => {
-    res.json({msg: "DELETE cocktail"})
-})
+router.delete('/:id', deleteCocktail)
 
 // UPDATE cock
-router.patch('/:id',(req,res) => {
-    res.json({msg: "UPDATE cocktail"})
-})
+router.patch('/:id', updateCocktail)
 
 module.exports = router
