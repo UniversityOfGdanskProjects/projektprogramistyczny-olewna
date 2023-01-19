@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentForm from './CommentForm.js';
 import CommentList from './CommentList.js';
 import BarChart from './BarChart.js';
 import { Stars } from './Stars.js';
 import { useFormik } from 'formik';
+import { deleteDrinkAction } from '../actions/drinkActions.js';
+import axios from 'axios';
 
 export function CocktailList() {
   const drinksList = useSelector((state) => state.drinks);
+  const dispatch = useDispatch();
   const [searching, setSearching] = useState(null)
 
   useEffect(() => {
     setSearching(drinksList)
-    console.log(searching)
   },[drinksList])
+
+  const handleDelete = async (id) => {
+    const response = await axios
+      .delete('/api/cocktails/'+id)
+      .then(res => console.log('axios delete success'))
+      .catch(err => console.error(err.response))
+    dispatch(deleteDrinkAction(id))
+  }
 
   const drinkList =
     searching !== null ? (
@@ -29,6 +39,7 @@ export function CocktailList() {
             <button>
               <Link to={`${x.idDrink}`}>Details</Link>
             </button>
+            <button onClick={()=>handleDelete(x.idDrink)}>🗑️</button>
           </div>
         </div>
       ))
@@ -70,8 +81,9 @@ export function CocktailList() {
             </div>
           ) : null}
       </div>
-              <div>
+      <div>
         <div className="drink-list">{drinkList}</div>
+        <button><Link to="add">Add new drink</Link></button>
       </div>
     </div>
   );

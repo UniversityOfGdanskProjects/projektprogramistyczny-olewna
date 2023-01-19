@@ -3,6 +3,7 @@ import './style.css';
 import { Routes, Route, useLocation, Link, Navigate } from 'react-router-dom';
 import { CocktailList } from './components/CocktailList.js';
 import { CocktailDetails } from './components/CocktailDetails.js';
+import { CocktailAdd } from './components/CocktailAdd.js';
 import { Login } from './components/Login.js';
 import { useDispatch } from 'react-redux';
 import { createDrinksAction } from './actions/drinkActions.js';
@@ -39,6 +40,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<CocktailList />} />
         <Route path=":id" element={<CocktailDetails />} />
+        <Route path="add" element={<CocktailAdd />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes>

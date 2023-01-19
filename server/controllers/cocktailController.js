@@ -23,9 +23,9 @@ const getOneCocktail = async (req,res) => {
 
 //POST new
 const createCocktail = async (req,res) => {
-    const {strDrink,strAlcoholic,strCategory,strGlass,strInstructions,strDrinkThumb,strIngredient1,strMeasure1} = req.body
+    const {strDrink,strAlcoholic,strCategory,strGlass,strInstructions,strDrinkThumb,strIngredient1,strIngredient2,strIngredient3,strIngredient4,strIngredient5,strIngredient6,strIngredient7,strIngredient8,strIngredient9,strIngredient10,strMeasure1,strMeasure2,strMeasure3,strMeasure4,strMeasure5,strMeasure6,strMeasure7,strMeasure8,strMeasure9,strMeasure10,idDrink} = req.body
     try {
-        const cocktail = await Cocktail.create({strDrink,strAlcoholic,strCategory,strGlass,strInstructions,strDrinkThumb,strIngredient1,strMeasure1})
+        const cocktail = await Cocktail.create({strDrink,strAlcoholic,strCategory,strGlass,strInstructions,strDrinkThumb,strIngredient1,strIngredient2,strIngredient3,strIngredient4,strIngredient5,strIngredient6,strIngredient7,strIngredient8,strIngredient9,strIngredient10,strMeasure1,strMeasure2,strMeasure3,strMeasure4,strMeasure5,strMeasure6,strMeasure7,strMeasure8,strMeasure9,strMeasure10,idDrink})
         res.status(200).json(cocktail)
     } catch (error){
         res.status(400).json({error: error.message})
@@ -35,10 +35,10 @@ const createCocktail = async (req,res) => {
 //DELETE one
 const deleteCocktail = async (req,res) => {
     const { id } = req.params
-    if (!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "NO SUCH COCKTAIL!"})
-    }
-    const cocktail = await Cocktail.findOneAndDelete({_id: id})
+    // if (!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(404).json({error: "NO SUCH COCKTAIL!"})
+    // }
+    const cocktail = await Cocktail.findOneAndDelete({idDrink: id})
 
     if (!cocktail) {
         return res.status(400).json({error: "NO SUCH COCKTAIL!"})
