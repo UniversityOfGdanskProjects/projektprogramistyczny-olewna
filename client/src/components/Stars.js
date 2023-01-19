@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-export function Stars({ rating }) {
+export function Stars({ rating, id }) {
   const [rates, setRates] = useState(rating);
 
   const calculateRate =
@@ -13,6 +14,7 @@ export function Stars({ rating }) {
   function handleClick(x) {
     setRates((prev) => [...prev, x]);
     rating.push(x);
+    axios.patch(`/api/cocktails/${id}`,{rating:rating})
   }
 
   useEffect(() => {

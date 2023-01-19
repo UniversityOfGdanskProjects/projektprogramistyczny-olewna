@@ -50,10 +50,10 @@ const deleteCocktail = async (req,res) => {
 //UPDATE one
 const updateCocktail = async (req,res) => {
     const { id } = req.params
-    if (!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "NO SUCH COCKTAIL!"})
-    }
-    const cocktail = await Cocktail.findOneAndUpdate({_id: id},{
+    // if (!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(404).json({error: "NO SUCH COCKTAIL!"})
+    // }
+    const cocktail = await Cocktail.findOneAndUpdate({idDrink: id},{
         ...req.body
     })
 

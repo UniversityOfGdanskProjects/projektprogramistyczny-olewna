@@ -7,12 +7,14 @@ import BarChart from './BarChart.js';
 import { Stars } from './Stars.js';
 import { useFormik } from 'formik';
 import { deleteDrinkAction } from '../actions/drinkActions.js';
+import { useCocktail } from '../context/CocktailsProvider.js';
 import axios from 'axios';
 
 export function CocktailList() {
   const drinksList = useSelector((state) => state.drinks);
   const dispatch = useDispatch();
   const [searching, setSearching] = useState(null)
+  const { logged } = useCocktail();
 
   useEffect(() => {
     setSearching(drinksList)
@@ -34,12 +36,12 @@ export function CocktailList() {
           <div className="drink-info">
             <div>{x.strDrink}</div>
             <div>{x.strAlcoholic}</div>
-            <Stars rating={x.rating} />
+            <Stars rating={x.rating} id={x.idDrink} />
 
             <button>
               <Link to={`${x.idDrink}`}>Details</Link>
             </button>
-            <button onClick={()=>handleDelete(x.idDrink)}>🗑️</button>
+            {logged.type==='admin' ? <button onClick={()=>handleDelete(x.idDrink)}>🗑️</button> : null}
           </div>
         </div>
       ))
