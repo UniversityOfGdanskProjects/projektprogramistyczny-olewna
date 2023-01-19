@@ -5,13 +5,20 @@ import CommentForm from './CommentForm.js';
 import CommentList from './CommentList.js';
 import BarChart from './BarChart.js';
 import { Stars } from './Stars.js';
+import { useFormik } from 'formik';
 
-export function CocktailList({ setSearched }) {
+export function CocktailList() {
   const drinksList = useSelector((state) => state.drinks);
+  const [searching, setSearching] = useState(null)
+
+  useEffect(() => {
+    setSearching(drinksList)
+    console.log(searching)
+  },[drinksList])
 
   const drinkList =
-    drinksList !== null ? (
-      drinksList.map((x) => (
+    searching !== null ? (
+      searching.map((x) => (
         <div className="drink" key={x.idDrink}>
           <img src={x.strDrinkThumb} className="drink-img" />
           <div className="drink-info">
@@ -29,32 +36,31 @@ export function CocktailList({ setSearched }) {
       <h3>No results :(</h3>
     );
 
-  const [search, setSearch] = useState('');
-
-  function handleChange(event) {
-    const { value } = event.target;
-    setSearch(value);
-  }
-
-  useEffect(() => {
-    setSearched(search);
-  }, [search]);
+  const formik = useFormik({
+    initialValues: {
+      name:"",
+    },
+    onSubmit: (values) => {
+      values.name !== "" ? setSearching(drinksList.filter((drink) => drink.strDrink.toLowerCase().includes(values.name.toLowerCase()))) : setSearching(drinksList)
+    }
+  })
 
   return (
     <div className='home'>
       <div className='left-side'>
-        <div className="search-input">
+        <form className="search-input" onSubmit={formik.handleSubmit}>
           <input
-            name="search"
+            name="name"
             type="text"
             placeholder="Search cocktails..."
-            value={search}
-            onChange={handleChange}
+            value={formik.values.name}
+            onChange={formik.handleChange}
             />
-        </div>
+            <button type="submit">Search</button>
+        </form>
         {drinksList !== null ? (
           <div className="chart">
-            <BarChart drinks={drinksList} />
+            <BarChart drinks={searching} />
           </div>
         ) : null}
           {drinksList !== null ? (

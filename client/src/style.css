@@ -42,12 +42,21 @@ button {
 
 .list,
 .full-comment,
-.link-home,
-.search-input {
+.link-home {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.search-input {
+  display: flex; 
+}
+
+.search-input > button{
+  width: 100px;
+  margin: 11px;
+  margin-left:0px
 }
 
 .drink-list {

@@ -8,8 +8,7 @@ import {
 export default function drinkReducer(state = [], action) {
   switch (action.type) {
     case CREATE_DRINKS:
-      state = action.payload;
-      return (state = state.map((x) => ({ ...x, rating: [] })));
+      return (state = action.payload);
     case ADD_DRINK:
       return [...state, action.payload];
     case DELETE_DRINK:

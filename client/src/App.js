@@ -13,15 +13,18 @@ import axios from 'axios';
 export default function App() {
   let location = useLocation();
   const dispatch = useDispatch();
-  const [searched, setSearched] = useState('');
 
   useEffect(() => {
-    axios
-      .get(
-        `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searched}`
-      )
-      .then((res) => dispatch(createDrinksAction(res.data.drinks)));
-  }, [searched]);
+    const fetchData = async () => {
+      const response = await axios
+        .get(
+          `/api/cocktails`
+        )
+        .then((res) => dispatch(createDrinksAction(res.data)))
+        .catch((err) => console.error(err));
+    }
+    fetchData()
+  }, []);
 
   return (
     <div>
@@ -34,7 +37,7 @@ export default function App() {
         </div>
       ) : null}
       <Routes>
-        <Route path="/" element={<CocktailList setSearched={setSearched} />} />
+        <Route path="/" element={<CocktailList />} />
         <Route path=":id" element={<CocktailDetails />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<Error />} />
