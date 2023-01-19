@@ -14,6 +14,7 @@ export function CocktailEdit(){
 
     const dispatch = useDispatch();
     const [errorMsg, setErrorMsg] = useState(null)
+    const [updateMsg, setUpdateMsg] = useState(null)
     
     const fetching = async (val) => {
         const response = await axios
@@ -59,6 +60,7 @@ export function CocktailEdit(){
         onSubmit: (values) => {
             dispatch(updateDrinkAction(values));
             fetching(values)
+            setUpdateMsg("Updated!")
         },
     });
 
@@ -265,6 +267,7 @@ export function CocktailEdit(){
                     
                 </div>
                 {errorMsg && <div>{errorMsg}</div>}
+                {updateMsg && <div>{updateMsg}</div>}
                 <button type="submit">Update</button>
             </form>
         </div>

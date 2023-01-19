@@ -85,7 +85,7 @@ export function CocktailList() {
       </div>
       <div>
         <div className="drink-list">{drinkList}</div>
-        <button><Link to="add">Add new drink</Link></button>
+        {logged.type==='admin' ? <button><Link to="add">Add new drink</Link></button> : null}
       </div>
     </div>
   );
