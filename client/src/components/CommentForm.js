@@ -1,9 +1,10 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addCommentAction } from '../actions/commentActions.js';
 import { useCocktail } from '../context/CocktailsProvider.js';
+import axios from 'axios'
 
 export default function CommentForm() {
   const { logged } = useCocktail();
@@ -14,18 +15,33 @@ export default function CommentForm() {
     else return nick;
   };
 
+  const [errorMsg, setErrorMsg] = useState(null)
+    
+  const fetching = async (val) => {
+      const response = await axios
+          .post('/api/comments',val)
+          .then((res) => {
+              console.log('axios post success')
+          })
+          .catch((err) => {
+              setErrorMsg(err)
+          })
+  }
+
   const formik = useFormik({
     initialValues: {
-      user: nicknaming(logged.nickname),
-      name: '',
+      name: nicknaming(logged.nickname),
+      content: '',
       id: uuidv4(),
     },
     onSubmit: (values) => {
       dispatch(addCommentAction(values));
+      fetching(values)
+      setErrorMsg(null)
       formik.resetForm({
         values: {
-          user: nicknaming(logged.nickname),
-          name: '',
+          name: nicknaming(logged.nickname),
+          content: '',
           id: uuidv4(),
         },
       });
@@ -39,9 +55,9 @@ export default function CommentForm() {
           <div className="comment">
             {logged.type === '' ? (
               <input
-                name="user"
+                name="name"
                 placeholder="WRITE YOUR NAME"
-                value={formik.values.user}
+                value={formik.values.name}
                 required
                 onChange={formik.handleChange}
               />
@@ -49,13 +65,14 @@ export default function CommentForm() {
               <div>{logged.nickname}</div>
             )}
             <input
-              name="name"
+              name="content"
               placeholder="WRITE COMMENT"
-              value={formik.values.name}
+              value={formik.values.content}
               required
               onChange={formik.handleChange}
             />
           </div>
+          <div>{errorMsg}</div>
           <button className="button-submit" type="submit">
             ADD COMMENT
           </button>

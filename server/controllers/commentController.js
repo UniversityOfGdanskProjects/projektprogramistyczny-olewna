@@ -9,9 +9,9 @@ const getComments = async (req,res) => {
 
 //POST new
 const createComment = async (req,res) => {
-    const {name,content} = req.body
+    const {name,content,id} = req.body
     try {
-        const comment = await Comment.create({name,content})
+        const comment = await Comment.create({name,content,id})
         res.status(200).json(comment)
     } catch (error){
         res.status(400).json({error: error.message})
@@ -21,10 +21,10 @@ const createComment = async (req,res) => {
 //DELETE one
 const deleteComment = async (req,res) => {
     const { id } = req.params
-    if (!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "Comment not found!"})
-    }
-    const comment = await Comment.findOneAndDelete({_id: id})
+    // if (!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(404).json({error: "Comment not found!"})
+    // }
+    const comment = await Comment.findOneAndDelete({id: id})
 
     if (!comment) {
         return res.status(400).json({error: "Comment not found!"})
@@ -36,14 +36,14 @@ const deleteComment = async (req,res) => {
 //UPDATE one
 const updateComment = async (req,res) => {
     const { id } = req.params
-    if (!mongoose.Types.ObjectId.isValid(id)){
-        return res.status(404).json({error: "Comment not found!"})
-    }
-    const comment = await Comment.findOneAndUpdate({_id: id},{
+    // if (!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(404).json({error: "Comment not found!"})
+    // }
+    const comment = await Comment.findOneAndUpdate({id: id},{
         ...req.body
     })
 
-    if (!cocktail) {
+    if (!comment) {
         return res.status(400).json({error: "Comment not found!"})
     } else {
         res.status(200).json(comment)

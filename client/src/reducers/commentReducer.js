@@ -2,10 +2,13 @@ import {
   ADD_COMMENT,
   UPDATE_COMMENT,
   DELETE_COMMENT,
+  CREATE_COMMENT,
 } from '../actions/commentActions.js';
 
 export default function commentReducer(state = [], action) {
   switch (action.type) {
+    case CREATE_COMMENT:
+      return (state = action.payload);
     case ADD_COMMENT:
       return [...state, action.payload];
     case DELETE_COMMENT:
@@ -14,7 +17,7 @@ export default function commentReducer(state = [], action) {
       return [
         ...state.map((comment) => {
           if (comment.id === action.payload.id) {
-            comment.name = action.payload.name;
+            comment.content = action.payload.content;
             return comment;
           } else return comment;
         }),

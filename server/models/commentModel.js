@@ -10,6 +10,10 @@ const commentsSchema = new Schema({
     content:{
         type:String,
         required:true
+    },
+    id: {
+        type:String,
+        required:true
     }
 }, { timestamps: true })
 

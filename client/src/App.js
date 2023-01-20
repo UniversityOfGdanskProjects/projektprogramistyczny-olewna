@@ -11,6 +11,7 @@ import { createDrinksAction } from './actions/drinkActions.js';
 import Navbar from './components/Navbar.js';
 import Error from './components/Error.js';
 import axios from 'axios';
+import { createCommentAction } from './actions/commentActions';
 
 export default function App() {
   let location = useLocation();
@@ -18,12 +19,14 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios
-        .get(
-          `/api/cocktails`
-        )
+      const fetchCocktails = await axios
+        .get(`/api/cocktails`)
         .then((res) => dispatch(createDrinksAction(res.data)))
         .catch((err) => console.error(err));
+      const fetchComments = await axios
+        .get(`/api/comments`)
+        .then((res) => dispatch(createCommentAction(res.data)))
+        .catch((err) => console.error(err))
     }
     fetchData()
   }, []);
