@@ -16,7 +16,7 @@ export function CocktailAdd(){
                 console.log('axios post success')
             })
             .catch((err) => {
-                setErrorMsg(err)
+                setErrorMsg(err.response)
             })
     }
 

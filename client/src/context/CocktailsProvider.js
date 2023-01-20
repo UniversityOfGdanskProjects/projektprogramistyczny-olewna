@@ -7,53 +7,15 @@ export function useCocktail() {
 }
 
 export function CocktailsProvider({ children }) {
-  const [loginInfo, setLoginInfo] = useState({
-    name: '',
-    password: '',
-  });
-
+  //login 
   const [logged, setLogged] = useState({
     nickname: '',
     type: '',
   });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setLoginInfo((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (loginInfo.password === 'admin' && loginInfo.name === 'admin') {
-      setLogged({
-        nickname: loginInfo.name,
-        type: 'admin',
-      });
-      setLoginInfo({
-        name: '',
-        password: '',
-      });
-    } else {
-      setLogged({
-        nickname: loginInfo.name,
-        type: 'user',
-      });
-      setLoginInfo({
-        name: '',
-        password: '',
-      });
-    }
-  }
-
   return (
     <CocktailContext.Provider
       value={{
-        loginInfo,
-        handleChange,
-        handleSubmit,
         logged,
         setLogged,
       }}

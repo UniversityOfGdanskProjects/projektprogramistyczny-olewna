@@ -8,9 +8,9 @@ const getUsers = async (req,res) => {
 
 //POST create user
 const createUser = async (req,res) => {
-    const {name, type, password} = req.body
+    const {name, type, password, email} = req.body
     try {
-        const user = await User.create({name, type, password})
+        const user = await User.create({name, type, password, email})
         res.status(200).json(user)
     } catch (error){
         res.status(400).json({error: error.message})
