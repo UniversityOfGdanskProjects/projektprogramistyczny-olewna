@@ -7,8 +7,8 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand navbar-dark p-3 mb-3">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand fw-bold">
-          🍹 COCKTAIL BAR 🍹
+        <Link to="/" className="navbar-brand fw-bold ">
+          <h2>🍹 COCKTAIL BAR 🍹</h2>
         </Link>
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
