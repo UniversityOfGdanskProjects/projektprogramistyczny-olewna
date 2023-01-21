@@ -1,17 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCocktail } from '../context/CocktailsProvider.js';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useCocktail } from "../context/CocktailsProvider.js";
 
 export default function Navbar() {
   const { logged } = useCocktail();
   return (
-    <div className="navbar">
-      <h1 className="navbar-title">COCKTAIL BAR 🍹</h1>
-      <button>
-        <Link to="/login">
-          {logged.type === '' ? <div>Log in</div> : <div>Account</div>}
+    <nav className="navbar navbar-expand navbar-dark p-3 mb-3">
+      <div className="container-fluid">
+        <Link to="/" className="navbar-brand fw-bold">
+          🍹 COCKTAIL BAR 🍹
         </Link>
-      </button>
-    </div>
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link to="/login" className="btn btn-dark">
+              {logged.type === "" ? <div>Log in</div> : <div>Account</div>}
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
