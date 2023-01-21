@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
+import "./style.scss";
 import { Routes, Route } from "react-router-dom";
 import { CocktailList } from "./components/CocktailList.js";
 import { CocktailDetails } from "./components/CocktailDetails.js";
