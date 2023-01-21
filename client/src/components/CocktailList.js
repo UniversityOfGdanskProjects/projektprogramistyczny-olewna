@@ -8,6 +8,7 @@ import { Stars } from './Stars.js';
 import { useFormik } from 'formik';
 import { deleteDrinkAction } from '../actions/drinkActions.js';
 import { useCocktail } from '../context/CocktailsProvider.js';
+import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
 export function CocktailList() {
@@ -58,6 +59,15 @@ export function CocktailList() {
     }
   })
 
+  const categories = searching !==null ? searching.reduce((acc, cur) => {
+    acc[cur.strCategory] = (acc[cur.strCategory] || 0) + 1
+    return acc;
+  }, {}) : null
+
+  const ths = categories !== null ? Object.keys(categories).map(x => <th key={uuidv4()}>{x}</th>) : null
+  const tds = categories !== null ? Object.values(categories).map(x => <td key={uuidv4()}>{x}</td>) : null
+
+
   return (
     <div className='home'>
       <div className='left-side'>
@@ -76,12 +86,27 @@ export function CocktailList() {
             <BarChart drinks={searching} />
           </div>
         ) : null}
-          {drinksList !== null ? (
-            <div className="comment-users">
-              <CommentForm />
-              <CommentList />
-            </div>
-          ) : null}
+        {drinksList !== null ? (
+          <div>
+            <div>Categories</div>
+            <table>
+              <tbody>
+                <tr>
+                  {ths}
+                </tr>
+                <tr>
+                  {tds}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        ) : null}
+        {drinksList !== null ? (
+          <div className="comment-users">
+            <CommentForm />
+            <CommentList />
+          </div>
+        ) : null}
       </div>
       <div>
         <div className="drink-list">{drinkList}</div>
