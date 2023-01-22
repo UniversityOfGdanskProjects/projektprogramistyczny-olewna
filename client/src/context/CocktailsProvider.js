@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
 const CocktailContext = React.createContext();
 
@@ -7,10 +7,10 @@ export function useCocktail() {
 }
 
 export function CocktailsProvider({ children }) {
-  //login 
+  //login
   const [logged, setLogged] = useState({
-    nickname: '',
-    type: '',
+    nickname: "",
+    type: "",
   });
 
   return (

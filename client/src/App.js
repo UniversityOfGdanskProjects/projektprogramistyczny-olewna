@@ -18,21 +18,15 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const fetchCocktails = await axios
-        .get(`/api/cocktails`)
-        .then((res) => dispatch(createDrinksAction(res.data)))
-        .catch((err) => console.error(err));
-      const fetchComments = await axios
-        .get(`/api/comments`)
-        .then((res) => dispatch(createCommentAction(res.data)))
-        .catch((err) => console.error(err));
-      const fetchUsers = await axios
-        .get(`/api/users`)
-        .then((res) => dispatch(createUsersAction(res.data)))
-        .catch((err) => console.error(err));
-    };
-    fetchData();
+    const p1 = axios.get("/api/cocktails");
+    const p2 = axios.get("/api/comments");
+    const p3 = axios.get("/api/users");
+
+    Promise.all([p1, p2, p3]).then((res) => {
+      dispatch(createDrinksAction(res[0].data));
+      dispatch(createCommentAction(res[1].data));
+      dispatch(createUsersAction(res[2].data));
+    });
   }, []);
 
   return (
