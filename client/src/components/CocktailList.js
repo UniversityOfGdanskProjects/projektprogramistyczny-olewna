@@ -65,11 +65,10 @@ export function CocktailList() {
     },
     onSubmit: (values) => {
       values.name !== ""
-        ? setSearching(
-            drinksList.filter((drink) =>
-              drink.strDrink.toLowerCase().includes(values.name.toLowerCase())
-            )
-          )
+        ? axios
+            .get("/api/cocktails/" + values.name)
+            .then((res) => setSearching(res.data))
+            .catch((err) => console.error(err))
         : setSearching(drinksList);
     },
   });
