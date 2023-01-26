@@ -51,7 +51,7 @@ export default function Login() {
         type="text"
         placeholder="Your nickname"
         onChange={formik.handleChange}
-        value={formik.values.name}
+        value={formik.values.nickname}
         className="form-control mb-3"
       />
       {formik.errors.nickname ? <div>{formik.errors.nickname}</div> : null}
