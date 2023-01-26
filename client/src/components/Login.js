@@ -38,7 +38,7 @@ export default function Login() {
           nickname: acc[0].name,
           type: acc[0].type,
         });
-      } else setErrorMsg("Nieprawidłowe dane ");
+      } else setErrorMsg("Incorrect nickname/password ");
     },
   });
 
@@ -54,7 +54,7 @@ export default function Login() {
         value={formik.values.name}
         className="form-control mb-3"
       />
-      {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+      {formik.errors.nickname ? <div>{formik.errors.nickname}</div> : null}
 
       <label htmlFor="password-log">Password: </label>
       <input
