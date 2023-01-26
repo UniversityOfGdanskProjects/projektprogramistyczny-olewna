@@ -13,8 +13,10 @@ import axios from "axios";
 
 export function CocktailList() {
   const drinksList = useSelector((state) => state.drinks);
+  const comments = useSelector((state) => state.comments);
   const dispatch = useDispatch();
   const [searching, setSearching] = useState(null);
+  const [commentAmount, setCommentAmount] = useState(null);
   const { logged } = useCocktail();
 
   useEffect(() => {
@@ -90,6 +92,16 @@ export function CocktailList() {
       ? Object.values(categories).map((x) => <td key={uuidv4()}>{x}</td>)
       : null;
 
+  const commentsAmount = async () =>
+    await axios
+      .get("/api/comments/amount")
+      .then((res) => setCommentAmount(res.data[0].amount))
+      .catch((err) => console.error(err));
+
+  useEffect(() => {
+    commentsAmount();
+  }, [comments]);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -123,6 +135,7 @@ export function CocktailList() {
           ) : null}
           {drinksList !== null ? (
             <div className="mt-5">
+              <h2>Comments {commentAmount}</h2>
               <CommentForm />
               <CommentList />
             </div>
